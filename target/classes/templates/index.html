@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cryptex - Buy & Sell Digital Assets In The Cryptex</title>
+
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="/images/favicon.svg" type="image/svg+xml">
+
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- 
+    - #HEADER
+  -->
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <a href="#" class="logo">
+        <img src="/images/logo.svg" width="32" height="32" alt="Cryptex logo">
+        Cryptex
+      </a>
+
+
+
+      <nav class="navbar" data-navbar>
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <a href="#stock-viewer" class="navbar-link" data-nav-link>Stock Viewer</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#currency-converter" class="navbar-link" data-nav-link>Currency Converter</a>
+          </li>
+        </ul>
+      </nav>
+
+      <a href="#about" class="logo1">
+        <img src="/images/info.png" width="32" height="32" alt="infoicon">
+      </a>
+
+      <button class="nav-toggle-btn" aria-label="Toggle menu" data-nav-toggler>
+        <span class="line line-1"></span>
+        <span class="line line-2"></span>
+        <span class="line line-3"></span>
+      </button>
+
+    </div>
+  </header>
+
+
+  <main>
+    <article>
+
+      <!-- 
+        - #HERO
+      -->
+
+      <section class="section hero" aria-label="hero" data-section>
+        <div class="container">
+
+          <div class="hero-content">
+
+            <h1 class="h1 hero-title">Currency & Stock Insights</h1>
+
+            <p class="hero-text">
+              Easily convert currencies, analyze exchange rates, and track stock performance. Predict target exchange rates and access live stock prices with global market insights.
+            </p>
+
+            <a href="#stock-viewer" class="btn btn-primary">Get started now</a>
+
+          </div>
+
+          <figure class="hero-banner">
+            <img src="/images/hero-banner.png" width="570" height="448" alt="hero banner" class="w-100">
+          </figure>
+
+        </div>
+      </section>
+
+
+      
+
+
+
+      <section id="stock-viewer">
+        <div class="stock-viewer-header">
+          <h2>stock viewer</h2>
+        </div>
+      <section class="section trend" aria-label="stock viewer" data-section>
+        <div class="container">
+            <div class="trend-tab">
+                <ul class="tab-nav">
+                    <li><button class="tab-btn active">Stock Insights</button></li>
+                </ul>
+
+    
+                <!-- Stock Cards Container -->
+                <ul class="tab-content" id="stock-cards-container">
+                    <!-- The initial 4 stock cards will be displayed here dynamically -->
+                </ul>
+            </div>
+        </div>
+    </section>
+            <!-- Stock Search -->
+
+            <section class="stock-section">
+              <div class="stock-container">
+                <!-- Stock Symbol Input and Fetch Button -->
+                <form id="stock-form">
+                  <div class="input-container">
+                    <input type="text" id="stock-symbol" placeholder="Enter Stock Symbol (e.g., AAPL)" />
+                    <button type="submit">Fetch Stock</button>
+                  </div>
+                </form>
+              </div>
+            
+              <!-- Section to display the fetched stock cards -->
+              <ul class="tab-content">
+                <!-- New stock cards will be inserted here dynamically -->
+              </ul>
+            </section>
+  </section>
+    
+        
+
+      
+
+  
+      
+      <section id="currency-converter">
+      <section class="section currency" aria-label="Currency Converter">
+        <div class="container">
+            <h2 class="section-title">Currency Converter</h2>
+    
+            <!-- Currency Converter Form -->
+            <form id="currencyForm" class="currency-form">
+                <div class="form-group">
+                    <label for="baseCurrency">Base Currency</label>
+                    <input 
+                        type="text" 
+                        id="baseCurrency" 
+                        name="baseCurrency" 
+                        placeholder="Enter base currency (e.g., USD)" 
+                        pattern="[A-Za-z]+"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                  <label for="baseCurrencyvalue">Base Currency Value</label>
+                  <input 
+                      type="number" 
+                      id="baseCurrencyvalue" 
+                      name="baseCurrencyvalue" 
+                      placeholder="Enter base currency value (e.g., 23)" 
+                      required
+                  >
+              </div>
+    
+                <div class="form-group">
+                    <label for="targetCurrency">Target Currency</label>
+                    <input 
+                        type="text" 
+                        id="targetCurrency" 
+                        name="targetCurrency" 
+                        placeholder="Enter target currency (e.g., EUR)" 
+                        required
+                    >
+                </div>
+    
+                <div class="form-group">
+                    <label for="targetRate">Target Exchange Rate (Optional)</label>
+                    <input 
+                        type="number" 
+                        step="any" 
+                        id="targetRate" 
+                        name="targetRate" 
+                        placeholder="Enter optional target rate"
+                    >
+                </div>
+
+                <div id="warningMessage" style="display:none; color: red;"></div>
+    
+                <button type="submit" class="btn">Convert</button>
+            </form>
+    
+<!-- Exchange Rate Result Section (Modal) -->
+<div id="resultModal" class="modal">
+  <div class="modal-content">
+      <span id="modalDateTime"></span></p>
+      <h3>Exchange Rate Result</h3>
+      <p><strong>Base Currency:</strong> <span id="modalBaseCurrency"></span></p>
+      <p><strong>Exchange Rate:</strong> <span id="modalExchangeRate"></span></p>
+      <p><strong>Target Currency Value (After Conversion):</strong> <span id="modalTargetCurrency"></span></p>
+      <p><strong>Targeted Exchange Rate:</strong> <span id="modalTargetedExchangeRate"></span></p>
+
+      <div id="modalPredictionDate" style="display: none;">
+          <p><strong>Predicted Date:</strong> <span id="modalPredictionDateText"></span></p>
+      </div>
+
+      <!-- Error Message Section -->
+      <div id="modalError" style="display: none;">
+          <p class="error-message" id="modalErrorMessage"></p>
+      </div>
+
+      <button id="closeModal" class="btn">Close</button>
+  </div>
+</div>
+
+    
+
+
+    
+  
+    
+
+      <!-- 
+        - #ABOUT
+      -->
+      <section id="about">
+      <section class="section about" aria-label="about" data-section>
+        <div class="container">
+
+          <figure class="about-banner">
+            <img src="/images/about-banner.png" width="748" height="436" loading="lazy" alt="about banner"
+              class="w-100">
+          </figure>
+
+          <div class="about-content">
+
+            <h2 class="h2 section-title">What Is Cryptex</h2>
+
+            <ul class="section-list">
+
+              <li class="section-item">
+                <div class="title-wrapper">
+                  <ion-icon name="checkmark-circle" aria-hidden="true"></ion-icon>
+
+                  <h3 class="h3 list-title">View real-time currency exchange rates</h3>
+                </div>
+
+                <p class="item-text">
+                  Stay updated with the latest exchange rates across multiple currencies.
+                </p>
+              </li>
+
+              <li class="section-item">
+                <div class="title-wrapper">
+                  <ion-icon name="checkmark-circle" aria-hidden="true"></ion-icon>
+
+                  <h3 class="h3 list-title">Predict future exchange trends</h3>
+                </div>
+
+                <p class="item-text">
+                  Leverage historical data and advanced algorithms to forecast potential rate changes.
+                </p>
+              </li>
+
+              <li class="section-item">
+                <div class="title-wrapper">
+                  <ion-icon name="checkmark-circle" aria-hidden="true"></ion-icon>
+
+                  <h3 class="h3 list-title">Monitor stock performance in real time</h3>
+                </div>
+
+                <p class="item-text">
+                  Track live stock prices and trends for global and Indian stocks. Stay informed with up-to-date analytics and company performance.
+                </p>
+              </li>
+
+            </ul>
+
+            <a href="#" class="btn btn-primary">Explore More</a>
+
+          </div>
+
+        </div>
+      </section>
+    </section>
+
+    </article>
+  </main>
+
+
+
+  <!-- 
+    - #FOOTER
+  -->
+
+  <footer class="footer">
+
+    <!-- this is the line -->
+
+    <div class="footer-bottom">
+      <div class="container">
+
+        <p class="copyright">
+          &copy; 2024 4x - All Rights Reserved by <a href="#" class="copyright-link">DRAHA Inc.</a>
+        </p>
+
+        <ul class="social-list">
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+    </div>
+
+  </footer>
+
+
+
+  <!-- 
+    - custom js link
+  -->
+  <script src="/js/script.js" defer></script>
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module"
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

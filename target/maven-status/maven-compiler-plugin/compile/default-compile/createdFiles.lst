@@ -1,0 +1,6 @@
+com/example/currencyconverter/StockController.class
+com/example/currencyconverter/CurrencyConverterController.class
+com/example/currencyconverter/CurrencyService.class
+com/example/currencyconverter/CurrencyConverterApplication.class
+com/example/currencyconverter/StockService.class
+com/example/currencyconverter/RestTemplateConfig.class
